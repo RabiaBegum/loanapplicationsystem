@@ -36,14 +36,32 @@ paths:
                 description: monthly income of user
                 type: double
       responses:
+        "500":
+          description: status "500" comes if service occur unexcepted error.
+          examples:
+            text/plain: Unexpected error occured
+        "400":
+          description: status "400" comes if user write missing field.
+          examples:
+            text/plain: Error occured while missing parameter
         "200":
-          description: Successful response
+          description: Succesful response
           content:
             application/json:
               schema:
                 type: object
+                description: Loan information results returned successfully.
                 properties:
-                  success:
-                    type: boolean
-                    description: Returns true if the result is successful
-
+                  message:
+                    type: String
+                  result:
+                    type: object
+                    properties:
+                      creditResult:
+                        type: string
+                        description: calculated credit status
+                        examples: "approved"
+                      creditLimit:
+                        type: double
+                        description: calculated credit limit
+                        examples: 10000

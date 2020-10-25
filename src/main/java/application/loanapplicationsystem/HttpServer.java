@@ -15,7 +15,7 @@ import application.loanapplicationsystem.services.LoanService;
 public class HttpServer {
 
 	private static final Logger logger = LogManager.getLogger(HttpServer.class);
-	private static final int PORT = 8070;
+	private static final int PORT = 8077;
 
 	private static LoanService loanService;
 

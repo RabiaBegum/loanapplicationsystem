@@ -1,13 +1,14 @@
 package application.loanapplicationsystem.services;
 
-import javax.ws.rs.core.Response;
-
 import static application.loanapplicationsystem.database.elasticsearch.ElasticSearchConstant.INDEX_LOAN;
 import static application.loanapplicationsystem.database.elasticsearch.ElasticSearchConstant.TYPE_ENTITY;
 import static org.junit.Assert.assertEquals;
 
+import javax.ws.rs.core.Response;
+
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 public class LoanServiceTest extends AbstractServiceTest {
 
@@ -31,26 +32,26 @@ public class LoanServiceTest extends AbstractServiceTest {
 	@Test
 	public void creditScoreSmallerThan500() throws Exception {
 		// setup..
-		LoanService loanService = new LoanService();
+		LoanService loanService = Mockito.spy(new LoanService());
 		Double monthlyIncome = (double) 60000;
-		UserInfoRequest userInfoRequest = new UserInfoRequest("1", "rabia", "hatapoglu", monthlyIncome,
-				"05555555555");
+		UserInfoRequest userInfoRequest = new UserInfoRequest("1", "rabia", "hatapoglu", monthlyIncome, "05555555555");
+		Mockito.doReturn(userInfoRequest).when(loanService).getUserInformation(mockRequest);
 		// execute..
-		Response response = loanService.calculate(mockRequest, userInfoRequest);
+		Response response = loanService.calculate(mockRequest);
 		// assert..
 		assertEquals(200, response.getStatus());
 		assertEquals(EXPECTED_SMALLER_THAN_500_RESULT, response.getEntity());
 	}
-	
+
 	@Test
 	public void creditScoreEquals500() throws Exception {
 		// setup..
-		LoanService loanService = new LoanService();
+		LoanService loanService = Mockito.spy(new LoanService());
 		Double monthlyIncome = (double) 60000;
-		UserInfoRequest userInfoRequest = new UserInfoRequest("6", "rabia", "hatapoglu", monthlyIncome,
-				"05555555555");
+		UserInfoRequest userInfoRequest = new UserInfoRequest("6", "rabia", "hatapoglu", monthlyIncome, "05555555555");
+		Mockito.doReturn(userInfoRequest).when(loanService).getUserInformation(mockRequest);
 		// execute..
-		Response response = loanService.calculate(mockRequest, userInfoRequest);
+		Response response = loanService.calculate(mockRequest);
 		// assert..
 		assertEquals(200, response.getStatus());
 		assertEquals(EXPECTED_EQUALS_500_RESULT, response.getEntity());
@@ -59,26 +60,26 @@ public class LoanServiceTest extends AbstractServiceTest {
 	@Test
 	public void creditScoreBiggerThan500() throws Exception {
 		// setup..
-		LoanService loanService = new LoanService();
+		LoanService loanService = Mockito.spy(new LoanService());
 		Double monthlyIncome = (double) 60000;
-		UserInfoRequest userInfoRequest = new UserInfoRequest("2", "rabia", "hatapoglu", monthlyIncome,
-				"05555555555");
+		UserInfoRequest userInfoRequest = new UserInfoRequest("2", "rabia", "hatapoglu", monthlyIncome, "05555555555");
+		Mockito.doReturn(userInfoRequest).when(loanService).getUserInformation(mockRequest);
 		// execute..
-		Response response = loanService.calculate(mockRequest, userInfoRequest);
+		Response response = loanService.calculate(mockRequest);
 		// assert..
 		assertEquals(200, response.getStatus());
 		assertEquals(EXPECTED_BIGGER_THAN_500_RESULT, response.getEntity());
 	}
-	
+
 	@Test
 	public void creditScoreBiggerThan500AndMonthlyIncomeBiggerThan5000() throws Exception {
 		// setup..
-		LoanService loanService = new LoanService();
+		LoanService loanService = Mockito.spy(new LoanService());
 		Double monthlyIncome = (double) 60000;
-		UserInfoRequest userInfoRequest = new UserInfoRequest("3", "rabia", "hatapoglu", monthlyIncome,
-				"05555555555");
+		UserInfoRequest userInfoRequest = new UserInfoRequest("3", "rabia", "hatapoglu", monthlyIncome, "05555555555");
+		Mockito.doReturn(userInfoRequest).when(loanService).getUserInformation(mockRequest);
 		// execute..
-		Response response = loanService.calculate(mockRequest, userInfoRequest);
+		Response response = loanService.calculate(mockRequest);
 		// assert..
 		assertEquals(200, response.getStatus());
 		assertEquals(EXPECTED_BIGGERTHAN_500_And_MONTHLYINCOME_BIGGERTHAN_5000_RESULT, response.getEntity());
@@ -87,12 +88,12 @@ public class LoanServiceTest extends AbstractServiceTest {
 	@Test
 	public void creditScoreEquals1000() throws Exception {
 		// setup..
-		LoanService loanService = new LoanService();
+		LoanService loanService = Mockito.spy(new LoanService());
 		Double monthlyIncome = (double) 60000;
-		UserInfoRequest userInfoRequest = new UserInfoRequest("4", "rabia", "hatapoglu", monthlyIncome,
-				"05555555555");
+		UserInfoRequest userInfoRequest = new UserInfoRequest("4", "rabia", "hatapoglu", monthlyIncome, "05555555555");
+		Mockito.doReturn(userInfoRequest).when(loanService).getUserInformation(mockRequest);
 		// execute..
-		Response response = loanService.calculate(mockRequest, userInfoRequest);
+		Response response = loanService.calculate(mockRequest);
 		// assert..
 		assertEquals(200, response.getStatus());
 		assertEquals(EXPECTED_EQUALS_1000_RESULT, response.getEntity());
@@ -101,12 +102,12 @@ public class LoanServiceTest extends AbstractServiceTest {
 	@Test
 	public void creditScoreBiggerThan1000() throws Exception {
 		// setup..
-		LoanService loanService = new LoanService();
+		LoanService loanService = Mockito.spy(new LoanService());
 		Double monthlyIncome = (double) 60000;
-		UserInfoRequest userInfoRequest = new UserInfoRequest("5", "rabia", "hatapoglu", monthlyIncome,
-				"05555555555");
+		UserInfoRequest userInfoRequest = new UserInfoRequest("5", "rabia", "hatapoglu", monthlyIncome, "05555555555");
+		Mockito.doReturn(userInfoRequest).when(loanService).getUserInformation(mockRequest);
 		// execute..
-		Response response = loanService.calculate(mockRequest, userInfoRequest);
+		Response response = loanService.calculate(mockRequest);
 		// assert..
 		assertEquals(200, response.getStatus());
 		assertEquals(EXPECTED_BIGGER_THAN_1000_RESULT, response.getEntity());
