@@ -1,0 +1,49 @@
+openapi: 3.0.0
+info:
+  version: '1.0.0'
+  title: 'loan application system'
+  description: 'loanapplicationsystem openAPI'
+host: localhost
+# Added by API Auto Mocking Plugin
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: local
+    url: http://localhost/
+paths:
+  /loan/calculate:
+    get:
+      summary: "Calculate credit limit and result from user informations"
+      parameters:
+        - in: body
+          name: search
+          type: object
+          schema:
+            type: object
+            properties:
+              identificationNo:
+                description: identification number of user
+                type: String
+              name:
+                description: name of user
+                type: String
+              surname:
+                description: surname of user
+                type: String
+              phoneNo:
+                description: phone number of user
+                type: String
+              monthlyIncome:
+                description: monthly income of user
+                type: double
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Returns true if the result is successful
+
