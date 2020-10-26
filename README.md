@@ -11,7 +11,6 @@ docker run --name elasticsearch6 -p 9200:9200 -p 9300:9300 \
 	-e "cluster.name=local-elasticsearch" \
 	elasticsearch:6.4.2
 
-<<<<<<< HEAD
 #api 	
 Run LoanApplicationSystem class for starting server.
 
@@ -20,8 +19,3 @@ sudo apt install nodejs
 sudo apt install npm
 ng serve 
 	
-	
-
-=======
-Run LoanApplicationSystem class for starting server. 
->>>>>>> branch 'main' of https://github.com/RabiaBegum/loanapplicationsystem.git
