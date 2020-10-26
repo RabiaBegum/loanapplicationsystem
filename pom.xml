@@ -13,6 +13,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<target.mainClass>application.loanapplicationsystem.HttpServer</target.mainClass>
 	</properties>
 
 	<dependencies>

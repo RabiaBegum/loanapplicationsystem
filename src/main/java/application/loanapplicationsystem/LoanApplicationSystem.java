@@ -1,23 +1,19 @@
 package application.loanapplicationsystem;
 
-import java.io.IOException;
-
-import application.loanapplicationsystem.database.elasticsearch.ElasticSearchClient;
-import application.loanapplicationsystem.database.elasticsearch.ElasticSearchConstant;
 import application.loanapplicationsystem.services.LoanService;
 
 /**
- * Hello world!
+ * Rabia Hatapoğlu
  *
  */
 public class LoanApplicationSystem {
-	public static void main(String[] args) throws IOException {
-//		ElasticSearchClient elasticSearchClient = ElasticSearchClient.getInstance();
-//		elasticSearchClient.createIndexesIfNotExists(ElasticSearchConstant.INDEX_LOAN);
-		System.out.println("Hello World!");
+	public static final int TIMEOUT = 5000;
+
+	public static void main(String[] args) throws Exception {
 		LoanService loanService = new LoanService();
 		HttpServer httpServer = new HttpServer(loanService);
 		httpServer.start();
-		System.err.println("safasf");
+		AbstractService.addDataForTest();
+		System.err.println("started server");
 	}
 }
